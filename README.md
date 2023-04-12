@@ -1,22 +1,14 @@
 # ButtBot Discord (A Discord ButtBot)
 
-⚠️ **Buttbot now has a fancy website!** https://buttbot.net
+hi! this is a fork of sct's original buttbot. i installed it on my own server and have started adding features that my friends found useful
 
-ButtBot Discord is a homage to my favorite IRC bot in existence, the buttbot. It serves one simple purpose, comedy.
-
-ButtBot Discord currently pales in comparison to the original buttbots beautiful and intelligent architecture but still tends to create the same amount of laughs.
-
-Finally updated this to work again on the latest API.
-
-## I want ButtBot on my server!
-
-If you want to add ButtBot to your server I am hosting the latest version at all times off a personal server. You can click the link below to request ButtBot to join your server.
-
-[Get ButtBot on my server!](https://discordapp.com/oauth2/authorize?client_id=438269159126859776&scope=bot&permissions=93248)
-
-I cannot promise this will always be working as intended but I will do my best. If you run into issues you can join the ButtBot discord server [by clicking here](https://discord.gg/uqSuumF).
+if you want this on your server then download and run it yourself with your own discord application bot token (possible documentation on this process coming eventually, maybe)
 
 ## Changelog
+
+### 1.6.1-fizzbuzzpatch1
+
+- add "shutup" feature to make buttbot temporarily stop buttifying messages on a server, for when you are tired of the butts
 
 ### 1.6.1
 
@@ -93,10 +85,6 @@ I cannot promise this will always be working as intended but I will do my best. 
 
 - Initial ButtAI Code
 - Added compaction interval for db on hourly basis so we don't lose any precious butt settings.
-
-## Contribution
-
-Look I mean this is just a side project with no real direction or effort so if you want to PR something that will make this even better I will not hesistate to accept it.
 
 ## License
 
