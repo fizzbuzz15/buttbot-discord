@@ -38,8 +38,11 @@ Whats the deal with these reactions on every message now? This is a experiemntal
       serverButtifyCount.toString(),
       true
     )
-    .addField('Want ButtBot on your server?', 'https://buttbot.net')
-    .addField('GitHub', 'https://github.com/sct/buttbot-discord')
+    .addField(
+      'Want ButtBot on your server?',
+      "Due to Discord's new API restrictions for bots on over 100 servers, you now need to download the source code and run it on a server (an actual computer, not a Discord server). Then make a Discord application and a bot: https://discord.com/developers/docs/intro"
+    )
+    .addField('GitHub', 'https://github.com/fizzbuzz15/buttbot-discord')
     .setFooter(`Version: ${version}`)
     .setColor([212, 228, 32]);
 
