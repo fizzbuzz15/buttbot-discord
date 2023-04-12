@@ -57,6 +57,42 @@ export const commandServerWhitelist = async (
   return message.channel.send(`Adding #${channel.name} to whitelist`);
 };
 
+export const commandShutup = async (
+  message: Message
+): Promise<Message | Message[]> => {
+  const server = await Servers.getServer(message.guild.id);
+
+  const whitelist = await server.getWhitelist();
+
+  if (!(await verifyPermission(message))) {
+    throw new Error('Permissions check failed');
+  }
+
+  if (!server) {
+    throw new Error('Server doesnt exist. How are you even doing this?');
+  }
+
+  const channel = message.channel;
+
+  if (!(channel instanceof TextChannel)) {
+    return message.channel.send('Must use this in a text channel');
+  }
+
+  if (whitelist.includes(channel.name)) {
+    // call updateShutup, get number from it to use as magic timestamp
+    // time is in milliseconds, need to truncate it to seconds for magic timestamp purposes
+    const newShutupTime = Math.floor(server.updateShutup() / 1000);
+
+    return message.channel.send(
+      'Shutup used, will not buttify until <t:' + newShutupTime + ':t>'
+    );
+  } else {
+    return message.channel.send(
+      "Can't use shutup in a non-whitelisted channel"
+    );
+  }
+};
+
 export const commandServerAccess = async (
   message: Message
 ): Promise<Message | Message[]> => {

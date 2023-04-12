@@ -15,6 +15,7 @@ class Servers {
           roles: [],
           muted: false,
           buttifyCount: 0,
+          shutupUntil: 0,
         },
         (err, newServer: ServerType) => {
           if (newServer) {

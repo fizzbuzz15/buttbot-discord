@@ -12,6 +12,8 @@ export interface ButtBotConfig {
   buttAI: 0 | 1;
   breakTheFirstRuleOfButtbotics: boolean;
   apiPort: number;
+  shutupUntil: number;
+  shutupDelay: number;
 }
 
 const config: ButtBotConfig = {
@@ -27,6 +29,9 @@ const config: ButtBotConfig = {
   // WARNING
   // IF YOU CHANGE THE FOLLOWING THE POLICE CAN MAYBE TAKE YOU TO JAIL
   breakTheFirstRuleOfButtbotics: false,
+  shutupUntil: 0,
+  // default 30 minutes, in millseconds
+  shutupDelay: Number(process.env.BOT_SHUTUP_DELAY) || 1800000,
 };
 
 export default config;

@@ -12,6 +12,7 @@ export interface ServerType {
   roles: string[];
   muted: boolean;
   buttifyCount: number;
+  shutupUntil: number;
   settings?: ButtBotConfig;
 }
 
@@ -42,6 +43,24 @@ class Server {
       });
     });
   }
+
+  public updateShutup = (): number => {
+    //take shutupDelay from config and add it to current timestamp to get the time to shutup until
+    const newShutupTime = Date.now() + config.shutupDelay;
+    this.db.update({ _id: this.id }, { $set: { shutupUntil: newShutupTime } });
+    return newShutupTime;
+  };
+
+  public getShutupTime = (): Promise<number> =>
+    new Promise((resolve, reject): void => {
+      this.db.findOne({ _id: this.id }, (err, server: ServerType) => {
+        if (!server) {
+          return reject(new Error('Cant find server in database'));
+        }
+
+        return resolve(server.shutupUntil || 0);
+      });
+    });
 
   public getWhitelist = (): Promise<string[]> =>
     new Promise((resolve, reject): void => {

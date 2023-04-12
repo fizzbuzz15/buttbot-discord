@@ -61,6 +61,10 @@ export const commandHelp = (message: Message): void => {
       'Add or remove a role from access control to ButtBot.'
     )
     .addField('?butt setting', 'Adjust bot settings for this server.')
+    .addField(
+      '?butt shutup',
+      'Make ButtBot shut up on this server for a while.'
+    )
     .setFooter('Never forget the firstrule')
     .setColor([212, 228, 32]);
 

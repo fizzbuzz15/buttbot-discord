@@ -21,6 +21,7 @@ import {
   commandServerWhitelist,
   commandServerAccess,
   commandServerSetting,
+  commandShutup,
 } from './commands/serverCommands';
 import servers from '../core/handlers/Servers';
 import wordsDb from '../core/handlers/Words';
@@ -128,6 +129,9 @@ class BotController {
         case 'setting':
           await commandServerSetting(message, command[1], command[2]);
           break;
+        case 'shutup':
+          await commandShutup(message);
+          break;
         default:
           commandUnknown(message);
       }
@@ -179,6 +183,13 @@ class BotController {
 
       const messageChannel = message.channel as TextChannel;
 
+      const retrievedShutupTime = (await server.getShutupTime()).valueOf();
+      if (retrievedShutupTime > Date.now()) {
+        logger.debug(
+          "buttify failing because this server's shutup time is in the future"
+        );
+      }
+
       // Do the thing to handle the butt chance here
       if (
         (this.client.user.id !== message.author.id ||
@@ -186,7 +197,8 @@ class BotController {
           config.breakTheFirstRuleOfButtbotics) &&
         whitelist.includes(messageChannel.name) &&
         server.lock === 0 &&
-        Math.random() <= config.chanceToButt
+        Math.random() <= config.chanceToButt &&
+        retrievedShutupTime < Date.now()
       ) {
         const availableWords = message.content.trim().split(' ');
         const wordsButtifiable = availableWords.filter((w) => shouldWeButt(w));
